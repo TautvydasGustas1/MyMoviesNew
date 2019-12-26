@@ -1,0 +1,15 @@
+
+.faq-container {
+    margin-top: 4rem;
+}
+
+.faq-container__title{
+    color: darkslateblue;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.faq-container__main-text p {
+    padding-bottom: 2%;
+}
+

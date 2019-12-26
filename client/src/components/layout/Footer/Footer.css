@@ -1,0 +1,36 @@
+.footer-middle {
+    background-color: blueviolet;
+    color: white;
+    padding-bottom: 1px;
+    text-align: center;
+    
+}
+
+.footer-bottom {
+    padding-top: 1.5rem;
+}
+
+.container {
+    align-content: center;
+    padding-bottom: 0 !important;
+    padding-top: 4%;
+    
+}
+
+.footer{
+    box-shadow: 0px 0px 5px 0px;
+    z-index: 100;
+}
+
+.row {
+    justify-content: space-evenly;
+    font-size: 12px;
+}
+
+ul li a {
+    color: white;
+}
+
+ul li a:hover {
+    color: white;
+}
