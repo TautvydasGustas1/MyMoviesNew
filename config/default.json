@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://admin:admin@mymoviescluster-kbgzc.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "38-UKwmfNUyU%XfcnC)'m(3hZyuCsV"
+}
