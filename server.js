@@ -13,6 +13,7 @@ app.get('/', (req, res) => res.send('API RUNNING'));
 //Define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/movies', require('./routes/api/movies'));
 // app.use('/api/profile', require('./routes/api/profile'));
 // app.use('/api/posts', require('./routes/api/posts'));
 

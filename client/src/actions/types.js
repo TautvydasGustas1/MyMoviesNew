@@ -1,0 +1,2 @@
+export const GET_MOVIES_TRENDING = 'GET_MOVIES_TRENDING';
+export const GET_MOVIE_DATA = 'GET_MOVIE_DATA';
