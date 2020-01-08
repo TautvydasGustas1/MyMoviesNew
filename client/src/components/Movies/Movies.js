@@ -32,7 +32,6 @@ const Movies = ({ getTrendingMovies, movies: { movies, loading } }) => {
 			) : (
 				<div>loading</div>
 			)}
-			{console.log(movies.results)}
 		</div>
 	);
 };

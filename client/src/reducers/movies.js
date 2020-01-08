@@ -4,7 +4,7 @@ const initialState = {
 	loading: true,
 	movies: [],
 	error: {},
-	movie: {}
+	movie: null
 };
 
 export default function(state = initialState, action) {

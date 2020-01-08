@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTrendingMovies } from '../../actions/movies';
 import PosterCard from '../PosterCard/PosterCard';
+import './Browse.css';
 
-const Browse = ({ getTrendingMovies, movies: { movies, loading } }) => {
+const Browse = ({ getTrendingMovies, movies: { movies, loading }, location }) => {
 	useEffect(
 		() => {
 			getTrendingMovies(1);
@@ -13,6 +14,14 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading } }) => {
 			getTrendingMovies
 		]
 	);
+
+	const nextPage = (page) => {
+		movies.page + 1 <= movies.total_pages && getTrendingMovies(page + 1);
+	};
+
+	const prevPage = (page) => {
+		movies.page !== 1 && getTrendingMovies(page - 1);
+	};
 
 	return (
 		<section className='browse-container'>
@@ -25,17 +34,42 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading } }) => {
 				</p>
 			</div>
 			<div className='browse_movies-container'>
-				<div className='row'>
-					{!loading ? (
-						movies.results.map((movie) => (
-							<div key={movie.id} className='col-4 col-md-3 col-lg-2'>
-								<PosterCard title={movie.title} id={movie.id} poster_path={movie.poster_path} />
+				{!loading ? (
+					<div className='browse_movies-container_inner'>
+						<div className='row'>
+							{movies.results.map((movie) => (
+								<div key={movie.id} className='col-4 col-md-3 col-lg-2dot4'>
+									<PosterCard title={movie.title} id={movie.id} poster_path={movie.poster_path} />
+								</div>
+							))}
+						</div>
+						<div className='pagination-outer text-center'>
+							<div className='d-inline-flex'>
+								<button
+									onClick={() => {
+										prevPage(movies.page);
+									}}
+									className={'btn btn-primary ' + (movies.page === 1 && 'disabled')}
+								>
+									Prev
+								</button>
+								<div>Page: {movies.page}</div>
+								<button
+									onClick={() => {
+										nextPage(movies.page);
+									}}
+									className={
+										'btn btn-primary ' + (movies.page + 1 >= movies.total_pages && 'disabled')
+									}
+								>
+									Next
+								</button>
 							</div>
-						))
-					) : (
-						<div>Loading</div>
-					)}
-				</div>
+						</div>
+					</div>
+				) : (
+					<div>Loading</div>
+				)}
 			</div>
 		</section>
 	);

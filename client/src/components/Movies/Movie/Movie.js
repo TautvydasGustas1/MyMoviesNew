@@ -22,7 +22,7 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 
 	return (
 		<div>
-			{!loading ? (
+			{!loading && movie !== null ? (
 				<div>
 					<section className='video-container'>
 						<VideoPlayer backdrop_path={movie.backdrop_path} />
