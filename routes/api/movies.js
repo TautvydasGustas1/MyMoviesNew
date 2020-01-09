@@ -28,7 +28,7 @@ router.get('/trending/movies', async (req, res) => {
 			res.json(JSON.parse(body));
 		});
 	} catch (error) {
-		console.error(err.message);
+		console.error(error.message);
 		res.status(500).send('Server Error');
 	}
 });
@@ -60,7 +60,35 @@ router.get('/movie/:id', async (req, res) => {
 			res.json(JSON.parse(body));
 		});
 	} catch (error) {
-		console.error(err.message);
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+// @route   GET api/movies/search
+// @desc    Get movie details
+// @acess   Public
+// Maybe in the future change to POST?
+router.get('/search', async (req, res) => {
+	try {
+		const options = {
+			uri:
+				`https://api.themoviedb.org/3/search/movie?api_key=${config.get('MOVIES_API_KEY')}&query=` +
+				req.query.searchQuery,
+			method: 'GET',
+			headers: { 'user-agent': 'node.js' }
+		};
+
+		//Request of trending movies
+		request(options, (error, response, body) => {
+			if (error) console.error(error);
+			if (response.statusCode !== 200) {
+				return res.status(404).json({ msg: 'Not Found' });
+			}
+			res.json(JSON.parse(body));
+		});
+	} catch (error) {
+		console.error(error.message);
 		res.status(500).send('Server Error');
 	}
 });

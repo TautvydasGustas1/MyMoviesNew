@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Browse from './components/Browse/Browse';
 import Movie from './components/Movies/Movie/Movie';
+import SearchPage from './components/SearchPage/SearchPage';
 
 const App = () => (
 	<Provider store={store}>
@@ -22,6 +23,7 @@ const App = () => (
 						<Route exact path='/movies' component={Movies} />
 						<Route exact path='/movies/browse/trending' component={Browse} />
 						<Route exact path='/movies/:id' component={Movie} />
+						<Route exact path='/search' component={SearchPage} />
 					</Switch>
 				</section>
 				<Footer />

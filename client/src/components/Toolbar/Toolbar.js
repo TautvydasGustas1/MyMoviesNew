@@ -22,6 +22,9 @@ const Toolbar = (props) => {
 							<li>
 								<Link to='/'>Explore</Link>
 							</li>
+							<li>
+								<Link to='/search'>Search</Link>
+							</li>
 						</ul>
 					</div>
 				</div>
