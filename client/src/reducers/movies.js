@@ -1,4 +1,4 @@
-import { GET_MOVIES_TRENDING, GET_MOVIE_DATA, SEARCH_MOVIES } from '../actions/types';
+import { GET_MOVIES_TRENDING, GET_MOVIE_DATA, SEARCH_MOVIES, CLEAR_STATE } from '../actions/types';
 
 const initialState = {
 	loading: true,
@@ -23,6 +23,13 @@ export default function(state = initialState, action) {
 				...state,
 				movie: payload,
 				loading: false
+			};
+		case CLEAR_STATE:
+			return {
+				...state,
+				loading: true,
+				movies: [],
+				movie: null
 			};
 		default:
 			return state;

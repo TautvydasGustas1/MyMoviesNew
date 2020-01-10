@@ -74,7 +74,9 @@ router.get('/search', async (req, res) => {
 		const options = {
 			uri:
 				`https://api.themoviedb.org/3/search/movie?api_key=${config.get('MOVIES_API_KEY')}&query=` +
-				req.query.searchQuery,
+				req.query.searchQuery +
+				'&page=' +
+				req.query.page,
 			method: 'GET',
 			headers: { 'user-agent': 'node.js' }
 		};

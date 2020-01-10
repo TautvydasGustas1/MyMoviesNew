@@ -4,11 +4,10 @@ import './Search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const Search = ({ searchMovie, startingQuery }) => {
-	const search = (value) => {
+const Search = ({ search }) => {
+	const handleSearchClick = (value) => {
 		if (value !== '') {
-			const query = startingQuery + value;
-			searchMovie(query);
+			search(value);
 		}
 	};
 
@@ -19,7 +18,7 @@ const Search = ({ searchMovie, startingQuery }) => {
 					<FontAwesomeIcon className='form-conrtrol-feddback' icon={faSearch} />{' '}
 				</span>
 				<input
-					onKeyPress={(e) => e.key === 'Enter' && search(e.target.value)}
+					onKeyPress={(e) => e.key === 'Enter' && handleSearchClick(e.target.value)}
 					type='text'
 					className='form-control'
 					placeholder='Search'
@@ -30,8 +29,7 @@ const Search = ({ searchMovie, startingQuery }) => {
 };
 
 Search.propTypes = {
-	searchMovie: PropTypes.func.isRequired,
-	startingQuery: PropTypes.string.isRequired
+	search: PropTypes.func.isRequired
 };
 
 export default Search;

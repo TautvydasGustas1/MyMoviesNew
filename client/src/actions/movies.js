@@ -1,8 +1,10 @@
 import axios from 'axios';
-import { GET_MOVIES_TRENDING, GET_MOVIE_DATA, SEARCH_MOVIES } from './types';
+import { GET_MOVIES_TRENDING, GET_MOVIE_DATA, SEARCH_MOVIES, CLEAR_STATE } from './types';
 
 export const getTrendingMovies = (page) => async (dispatch) => {
 	try {
+		dispatch({ type: CLEAR_STATE });
+
 		const res = await axios.get(`/api/movies/trending/movies?page=${page}`);
 
 		dispatch({
@@ -37,9 +39,10 @@ export const getMovie = (id, query) => async (dispatch) => {
 	}
 };
 
-export const searchMovie = (query) => async (dispatch) => {
+export const searchMovie = (searchQuery, page_number) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/api/movies/search${query}`);
+		const fullQuery = `?searchQuery=${searchQuery}&page=${page_number}`;
+		const res = await axios.get(`/api/movies/search${fullQuery}`);
 
 		dispatch({
 			type: SEARCH_MOVIES,
@@ -53,4 +56,10 @@ export const searchMovie = (query) => async (dispatch) => {
 		// });
 		console.log(error);
 	}
+};
+
+export const clearState = () => async (dispatch) => {
+	dispatch({
+		type: CLEAR_STATE
+	});
 };

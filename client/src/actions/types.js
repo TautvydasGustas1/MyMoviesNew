@@ -1,3 +1,4 @@
 export const GET_MOVIES_TRENDING = 'GET_MOVIES_TRENDING';
 export const GET_MOVIE_DATA = 'GET_MOVIE_DATA';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
+export const CLEAR_STATE = 'CLEAR_STATE';

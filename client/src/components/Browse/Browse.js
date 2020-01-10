@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { getTrendingMovies } from '../../actions/movies';
 import PosterCard from '../PosterCard/PosterCard';
 import './Browse.css';
+import PaginationButtons from '../PaginationButtons/PaginationButtons';
 
-const Browse = ({ getTrendingMovies, movies: { movies, loading }, location }) => {
+const Browse = ({ getTrendingMovies, movies: { movies, loading } }) => {
 	useEffect(
 		() => {
 			getTrendingMovies(1);
@@ -15,12 +16,8 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading }, location }) =>
 		]
 	);
 
-	const nextPage = (page) => {
-		movies.page + 1 <= movies.total_pages && getTrendingMovies(page + 1);
-	};
-
-	const prevPage = (page) => {
-		movies.page !== 1 && getTrendingMovies(page - 1);
+	const handlePaginationCallback = (page_number) => {
+		getTrendingMovies(page_number);
 	};
 
 	return (
@@ -36,7 +33,7 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading }, location }) =>
 			<div className='browse_movies-container'>
 				{!loading ? (
 					<div className='browse_movies-container_inner'>
-						<div className='row'>
+						<div className='row justify-content-start'>
 							{movies.results.map((movie) => (
 								<div key={movie.id} className='col-4 col-md-3 col-lg-2dot4'>
 									<PosterCard title={movie.title} id={movie.id} poster_path={movie.poster_path} />
@@ -44,27 +41,11 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading }, location }) =>
 							))}
 						</div>
 						<div className='pagination-outer text-center'>
-							<div className='d-inline-flex'>
-								<button
-									onClick={() => {
-										prevPage(movies.page);
-									}}
-									className={'btn btn-primary ' + (movies.page === 1 && 'disabled')}
-								>
-									Prev
-								</button>
-								<div>Page: {movies.page}</div>
-								<button
-									onClick={() => {
-										nextPage(movies.page);
-									}}
-									className={
-										'btn btn-primary ' + (movies.page + 1 >= movies.total_pages && 'disabled')
-									}
-								>
-									Next
-								</button>
-							</div>
+							<PaginationButtons
+								callBackPageNumber={handlePaginationCallback}
+								page={movies.page}
+								total_pages={movies.total_pages}
+							/>
 						</div>
 					</div>
 				) : (
