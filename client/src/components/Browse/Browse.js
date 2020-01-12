@@ -31,7 +31,7 @@ const Browse = ({ getTrendingMovies, movies: { movies, loading } }) => {
 				</p>
 			</div>
 			<div className='browse_movies-container'>
-				{!loading ? (
+				{!loading && movies.length !== 0 ? (
 					<div className='browse_movies-container_inner'>
 						<div className='row justify-content-start'>
 							{movies.results.map((movie) => (

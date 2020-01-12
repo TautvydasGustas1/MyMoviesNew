@@ -1,4 +1,56 @@
 .video-outer {
 	height: inherit;
+}
+
+.overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	height: inherit;
+}
+
+.player-overlay {
 	background-position: center;
+	height: inherit;
+}
+
+.play {
+	background: grey;
+	border-radius: 50% / 10%;
+	color: #ffffff;
+	font-size: 1.5em; /* change this to change size */
+	height: 3em;
+	margin: auto;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	text-indent: 0.1em;
+	transition: all 150ms ease-out;
+	width: 4em;
+}
+
+.play:hover {
+	background: darkorange;
+}
+
+.play::before {
+	background: inherit;
+	border-radius: 5% / 50%;
+	bottom: 9%;
+	content: "";
+	left: -5%;
+	position: absolute;
+	right: -5%;
+	top: 9%;
+}
+
+.play::after {
+	border-style: solid;
+	border-width: 1em 0 1em 1.732em;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.75);
+	content: ' ';
+	font-size: 0.75em;
+	height: 0;
+	margin: -1em 0 0 -0.75em;
+	top: 50%;
+	position: absolute;
+	width: 0;
 }

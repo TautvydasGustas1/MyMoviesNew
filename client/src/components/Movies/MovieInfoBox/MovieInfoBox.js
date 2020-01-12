@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './MovieInfoBox.css';
 
-const MovieInfoBox = ({ credits: { cast, crew }, overview }) => {
+const MovieInfoBox = ({ credits: { cast, crew }, release, runtime }) => {
 	let jobs = {
 		Director: '',
 		main_cast: ''
@@ -12,21 +12,22 @@ const MovieInfoBox = ({ credits: { cast, crew }, overview }) => {
 		jobs[element.job] += element.name;
 	});
 
-	jobs.main_cast = cast.map((ele) => ele.name).join(' ,');
+	jobs.main_cast = cast.slice(0, 15).map((ele) => ele.name).join(', ');
 
 	return (
 		<div className='movie-info-box-outer'>
-			<p>{overview}</p>
 			<div className='row'>
 				<div className='col-12'>
 					<b>Director: </b>
 					{jobs.Director}
 				</div>
 				<div className='col-12'>
-					<b>Runtime: </b>{' '}
+					<b>Runtime: </b>
+					{`${runtime}min`}
 				</div>
 				<div className='col-12'>
-					<b>Release Date: </b>{' '}
+					<b>Release Date: </b>
+					{release}
 				</div>
 				<div className='col-12'>
 					<b>Main Cast: </b>
