@@ -32,11 +32,11 @@ const Toolbar = (props) => {
 				<div className='navbar_navigation-items'>
 					<ul>
 						<li>
-							<Link to='/'>Log in</Link>
+							<Link to='/login'>Log in</Link>
 						</li>
 						<div className='navbar_seperator'>|</div>
 						<li>
-							<Link to='/'>Sign up</Link>
+							<Link to='/register'>Sign up</Link>
 						</li>
 					</ul>
 				</div>
