@@ -15,7 +15,8 @@ import Login from './components/auth/Login/Login';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Register from './components/auth/Register/Register';
-
+import Alert from './components/layout/Alerts/Alert';
+import Profile from './components/Profile/Profile';
 import { loadUser } from './actions/auth';
 
 if (localStorage.token) {
@@ -32,6 +33,7 @@ const App = () => {
 			<Router>
 				<Fragment>
 					<Navbar />
+					<Alert />
 					<section className='container'>
 						<Switch>
 							<Route exact path='/faq' component={FAQ} />
@@ -41,6 +43,7 @@ const App = () => {
 							<Route exact path='/search' component={SearchPage} />
 							<Route exact path='/login' component={Login} />
 							<Route exact path='/register' component={Register} />
+							<PrivateRoute exact path='/profile/:username' component={Profile} />
 						</Switch>
 					</section>
 					<Footer />

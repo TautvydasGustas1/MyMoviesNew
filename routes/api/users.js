@@ -21,24 +21,34 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { email, password } = req.body;
+		const { email, password, username } = req.body;
 
 		//See if user exists
-
 		try {
-			let user = await User.findOne({ email });
+			let userEmail = await User.findOne({ email });
 
-			if (user) {
+			if (userEmail) {
 				return res.status(400).json({
 					errors: [
-						{ msg: 'User already exists' }
+						{ msg: 'Email already exists' }
 					]
 				});
 			}
 
-			user = new User({
+			let userUsername = await User.findOne({ username });
+			//See if username exists
+			if (userUsername) {
+				return res.status(400).json({
+					errors: [
+						{ msg: 'Username already exists' }
+					]
+				});
+			}
+
+			let user = new User({
 				email,
-				password
+				password,
+				username
 			});
 
 			//Encrypt password
@@ -48,7 +58,6 @@ router.post(
 			await user.save();
 
 			//Return jsonwebtoken
-
 			const payload = {
 				user: {
 					id: user.id
@@ -70,5 +79,18 @@ router.post(
 		}
 	}
 );
+
+// @route   GET api/users/:username
+// @desc    Find user by username
+// @acess   Public
+router.get('/:username', async (req, res) => {
+	try {
+		const user = await User.findOne({ username: req.params.username }).select('-password -_id');
+		res.json(user);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
 
 module.exports = router;

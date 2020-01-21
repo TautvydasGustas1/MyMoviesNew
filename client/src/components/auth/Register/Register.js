@@ -8,14 +8,14 @@ const Register = ({ isAuthenticated, register, errors }) => {
 	const [
 		formData,
 		setFormData
-	] = useState({ email: '', password: '', password2: '' });
+	] = useState({ email: '', username: '', password: '', password2: '' });
 
 	const [
 		passwordMatch,
 		setPasswordMatch
 	] = useState(true);
 
-	const { email, password, password2 } = formData;
+	const { email, username, password, password2 } = formData;
 
 	const onChange = (e) =>
 		setFormData({
@@ -26,7 +26,7 @@ const Register = ({ isAuthenticated, register, errors }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		if (password === password2) {
-			register(email, password);
+			register(email, username, password);
 		} else {
 			setPasswordMatch(false);
 		}
@@ -64,6 +64,20 @@ const Register = ({ isAuthenticated, register, errors }) => {
 							required
 						/>
 						<div className='invalid-feedback'>Please enter valid email</div>
+					</div>
+					<div className='form-group'>
+						<label>Username</label>
+						<input
+							type='text'
+							name='username'
+							id='username'
+							className='form-control'
+							placeholder='Username'
+							value={username}
+							onChange={(e) => onChange(e)}
+							required
+						/>
+						<div className='invalid-feedback'>Please enter valid Username</div>
 					</div>
 					<div className='form-group'>
 						<label>Password</label>
