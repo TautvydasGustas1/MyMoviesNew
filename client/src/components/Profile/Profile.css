@@ -1,0 +1,31 @@
+.profile-buttons_button {
+	display: inline-block;
+	width: 33.333%;
+	height: 60px;
+}
+
+.profile-buttons_button:hover {
+	cursor: pointer;
+}
+
+.profile-buttons_button:after {
+	content: '';
+	position: absolute;
+	width: 33.333%;
+	height: 0;
+	left: 0;
+	bottom: 0;
+	background-color: blueviolet;
+}
+
+.active::after {
+	height: 5px;
+}
+
+.profile-buttons_button:hover:after {
+	height: 2px;
+}
+
+.profile-buttons_list {
+	text-align: center;
+}

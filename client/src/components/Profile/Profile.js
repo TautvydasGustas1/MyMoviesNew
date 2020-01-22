@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUserProfile } from '../../actions/profiles';
 import ProfileAvatarWithInfo from './ProfileAvatarWithInfo/ProfileAvatarWithInfo';
 import profileAvatar from '../images/profile-avatar.png';
+import './Profile.css';
 
 const Profile = ({ getUserProfile, match, profile: { loading, profile } }) => {
 	useEffect(
@@ -22,7 +23,12 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile } }) => {
 				<div>No user Found!</div>
 			) : (
 				<div className='card'>
-					<div className='card-body'>
+					<div className='card-body' style={{ backgroundImage: 'linear-gradient(to top, #848484, #e1e1e1)' }}>
+						<div className='avatar-info_options text-right' style={{ marginBottom: '10em' }}>
+							<div>
+								<a href='#!'>Edit profile</a>
+							</div>
+						</div>
 						<div className='avatar-info_container d-inline-flex'>
 							{loading ? (
 								<div>Loading</div>
@@ -35,6 +41,13 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile } }) => {
 								/>
 							)}
 						</div>
+					</div>
+					<div className='profile-buttons_container'>
+						<ul className='profile-buttons_list m-0 p-0'>
+							<li className='profile-buttons_button active'>Stats</li>
+							<li className='profile-buttons_button border-left border-right'>Watching</li>
+							<li className='profile-buttons_button'>Watched</li>
+						</ul>
 					</div>
 				</div>
 			)}
