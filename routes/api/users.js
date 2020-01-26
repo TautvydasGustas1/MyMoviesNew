@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
+const UserMovies = require('../../models/UserMovies');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -87,6 +88,40 @@ router.get('/:username', async (req, res) => {
 	try {
 		const user = await User.findOne({ username: req.params.username }).select('-password -_id');
 		res.json(user);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
+
+// @route   GET api/users/movies
+// @desc    Get user watched movies
+// @acess   Private //To do
+router.get('/movies/:user_id', async (req, res) => {
+	try {
+		const movies = await UserMovies.find({ user_id: req.params.user_id }).select();
+		res.json(movies);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
+
+// @route   POST api/users/movies
+// @desc    Add user watched movie
+// @acess   Private //To do
+router.post('/movies', async (req, res) => {
+	const { movie_id, user_id, rate } = req.body;
+
+	try {
+		let movie = new UserMovies({
+			movie_id,
+			user_id,
+			rate
+		});
+
+		await movie.save();
+		res.sendStatus(200);
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server error');

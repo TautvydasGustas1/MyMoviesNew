@@ -9,6 +9,7 @@ import MovieInfoBox from '../MovieInfoBox/MovieInfoBox';
 import MovieInformation from './MovieInformation';
 import MovieRatingInformation from './MovieRatingInformation';
 import PosterNotFound from '../../images/posterNotFound.png';
+import RateMovie from './RateMovie/RateMovie';
 
 const query = '?append_to_response=videos,credits';
 
@@ -28,6 +29,11 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 		setShowVideo
 	] = useState(false);
 
+	const [
+		showModal,
+		setShowModal
+	] = useState(false);
+
 	return (
 		<Fragment>
 			{!loading && movie !== null ? (
@@ -41,7 +47,19 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 						/>
 					</section>
 					<div className='name_tag-container mb-4'>
-						<div className='name_tag-inner'>{movie.title}</div>
+						<div className='row m-1'>
+							<div className='col-6 name_tag-inner'>{movie.title}</div>
+							<div className='col-6 text-right'>
+								<button
+									onClick={() => {
+										setShowModal(!showModal);
+									}}
+									className='btn btn-primary'
+								>
+									Seen
+								</button>
+							</div>
+						</div>
 					</div>
 					<div className='movie-info_container'>
 						<div className='row'>
@@ -49,7 +67,7 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 								<div>
 									<img
 										alt={movie.title}
-										width='150px'
+										width='100%'
 										src={
 											movie.poster_path === null ? (
 												PosterNotFound
@@ -84,6 +102,13 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 								</div>
 							</div>
 						</div>
+					</div>
+					<div>
+						<RateMovie
+							setShowModal={setShowModal}
+							defaultShow={showModal}
+							poster={movie.paster_path === null ? PosterNotFound : movie.poster_path}
+						/>
 					</div>
 				</div>
 			) : (

@@ -14,3 +14,4 @@ export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const GET_PROFILE = 'GET_PROFILE';
+export const ADD_WATCHED_MOVIE = 'ADD_WATCHED_MOVIE';
