@@ -96,7 +96,8 @@ router.get('/:username', async (req, res) => {
 
 // @route   GET api/users/movies
 // @desc    Get user watched movies
-// @acess   Private //To do
+// @acess   Private
+// @todo 	Make private
 router.get('/movies/:user_id', async (req, res) => {
 	try {
 		const movies = await UserMovies.find({ user_id: req.params.user_id }).select();
@@ -109,7 +110,8 @@ router.get('/movies/:user_id', async (req, res) => {
 
 // @route   POST api/users/movies
 // @desc    Add user watched movie
-// @acess   Private //To do
+// @acess   Private
+// @todo 	Make private
 router.post('/movies', async (req, res) => {
 	const { movie_id, user_id, rate } = req.body;
 

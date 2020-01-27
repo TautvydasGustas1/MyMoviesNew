@@ -11,6 +11,7 @@ import {
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { showAlert } from './alert';
+import { getWatchedMovies } from './watched';
 
 //Load user to state
 export const loadUser = () => async (dispatch) => {
@@ -20,10 +21,16 @@ export const loadUser = () => async (dispatch) => {
 
 	try {
 		const res = await axios.get('/api/auth');
+
+		// ADD WATCHED MOVIES
+
 		dispatch({
 			type: USER_LOADED,
 			payload: res.data
 		});
+
+		// LOAD WATCHED MOVIES
+		dispatch(getWatchedMovies(res.data._id));
 	} catch (error) {
 		dispatch({
 			type: AUTH_ERROR

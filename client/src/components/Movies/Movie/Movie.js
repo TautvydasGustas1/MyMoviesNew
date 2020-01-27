@@ -13,7 +13,7 @@ import RateMovie from './RateMovie/RateMovie';
 
 const query = '?append_to_response=videos,credits';
 
-const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
+const Movie = ({ getMovie, movie: { loading, movie }, match, user, watched }) => {
 	useEffect(
 		() => {
 			getMovie(match.params.id, query);
@@ -34,6 +34,8 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 		setShowModal
 	] = useState(false);
 
+	//Check if movie is in watched list
+
 	return (
 		<Fragment>
 			{!loading && movie !== null ? (
@@ -50,14 +52,18 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 						<div className='row m-1'>
 							<div className='col-6 name_tag-inner'>{movie.title}</div>
 							<div className='col-6 text-right'>
-								<button
-									onClick={() => {
-										setShowModal(!showModal);
-									}}
-									className='btn btn-primary'
-								>
-									Seen
-								</button>
+								{watched.watched.find((data) => data.movie_id === movie.id) ? (
+									<div>Watched and rated</div>
+								) : (
+									<button
+										onClick={() => {
+											setShowModal(!showModal);
+										}}
+										className='btn btn-primary'
+									>
+										Seen
+									</button>
+								)}
 							</div>
 						</div>
 					</div>
@@ -108,6 +114,8 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 							setShowModal={setShowModal}
 							defaultShow={showModal}
 							poster={movie.paster_path === null ? PosterNotFound : movie.poster_path}
+							user_id={user._id}
+							movie_id={movie.id}
 						/>
 					</div>
 				</div>
@@ -120,11 +128,14 @@ const Movie = ({ getMovie, movie: { loading, movie }, match }) => {
 
 Movie.propTypes = {
 	getMovie: PropTypes.func.isRequired,
-	movie: PropTypes.object.isRequired
+	movie: PropTypes.object.isRequired,
+	user: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-	movie: state.movies
+	movie: state.movies,
+	user: state.auth.user,
+	watched: state.watched
 });
 
 export default connect(mapStateToProps, { getMovie })(Movie);

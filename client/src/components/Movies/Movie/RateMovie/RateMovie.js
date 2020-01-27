@@ -16,7 +16,12 @@ const RateMovie = ({ poster, defaultShow, setShowModal, user_id, movie_id, postW
 	}
 
 	const postMovie = (rate) => {
-		postWatchedMovie(1, 2, rate);
+		postWatchedMovie(user_id, movie_id, rate);
+		try {
+			setShowModal(false);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -108,7 +113,9 @@ const RateMovie = ({ poster, defaultShow, setShowModal, user_id, movie_id, postW
 RateMovie.propTypes = {
 	poster: PropTypes.string.isRequired,
 	defaultShow: PropTypes.bool.isRequired,
-	setShowModal: PropTypes.func.isRequired
+	setShowModal: PropTypes.func.isRequired,
+	user_id: PropTypes.string.isRequired,
+	movie_id: PropTypes.number.isRequired
 };
 
 export default connect(null, { postWatchedMovie })(RateMovie);

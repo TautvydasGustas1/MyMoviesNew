@@ -6,7 +6,7 @@ const UserMoviesSchema = new mongoose.Schema({
 		required: true
 	},
 	user_id: {
-		type: Number,
+		type: String,
 		required: true
 	},
 	rate: {

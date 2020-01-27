@@ -1,4 +1,4 @@
-import { ADD_WATCHED_MOVIE } from '../actions/types';
+import { ADD_WATCHED_MOVIE, GET_WATCHED_MOVIES } from '../actions/types';
 
 const initialState = {
 	loading: true,
@@ -10,6 +10,12 @@ export default function(state = initialState, action) {
 	const { type, payload } = action;
 
 	switch (type) {
+		case GET_WATCHED_MOVIES:
+			return {
+				...state,
+				loading: false,
+				watched: payload
+			};
 		case ADD_WATCHED_MOVIE:
 			return {
 				...state,
