@@ -12,6 +12,13 @@ const UserMoviesSchema = new mongoose.Schema({
 	rate: {
 		type: Number,
 		required: true
+	},
+	title: {
+		type: String,
+		required: true
+	},
+	poster_path: {
+		type: String
 	}
 });
 

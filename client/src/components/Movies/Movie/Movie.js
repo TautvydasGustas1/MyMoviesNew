@@ -10,6 +10,7 @@ import MovieInformation from './MovieInformation';
 import MovieRatingInformation from './MovieRatingInformation';
 import PosterNotFound from '../../images/posterNotFound.png';
 import RateMovie from './RateMovie/RateMovie';
+import avatarDef from '../../images/profile-avatar.png';
 
 const query = '?append_to_response=videos,credits';
 
@@ -52,21 +53,26 @@ const Movie = ({ getMovie, movie: { loading, movie }, match, user, watched }) =>
 						<div className='row m-1'>
 							<div className='col-6 name_tag-inner'>{movie.title}</div>
 							<div className='col-6 text-right'>
-								{watched.watched.find((data) => data.movie_id === movie.id) ? (
-									<div>Watched and rated</div>
-								) : (
-									<button
-										onClick={() => {
-											setShowModal(!showModal);
-										}}
-										className='btn btn-primary'
-									>
-										Seen
-									</button>
+								{user !== null && (
+									<span>
+										{watched.watched.find((data) => data.movie_id === movie.id) ? (
+											<div>Watched and rated</div>
+										) : (
+											<button
+												onClick={() => {
+													setShowModal(!showModal);
+												}}
+												className='btn btn-primary'
+											>
+												Seen
+											</button>
+										)}
+									</span>
 								)}
 							</div>
 						</div>
 					</div>
+
 					<div className='movie-info_container'>
 						<div className='row'>
 							<div className='movie-info_left col-4'>
@@ -106,18 +112,64 @@ const Movie = ({ getMovie, movie: { loading, movie }, match, user, watched }) =>
 										vote_count={movie.vote_count}
 									/>
 								</div>
+								<div className='card mt-3'>
+									<div className='card-header'>
+										<div className='row'>
+											<div className='col-6'>Reviews</div>
+											<div className='col-6 text-right'>
+												<button className='btn btn-small btn-primary'>Write review</button>
+											</div>
+										</div>
+									</div>
+									<div className='card-body'>
+										<div className='row'>
+											<div className='col'>
+												<div className='row'>
+													<div className='col-12 review-avatar'>
+														<img
+															className='rounded-circle  mr-2'
+															width='35px'
+															src={avatarDef}
+														/>
+														<div className='d-inline-block align-bottom'>
+															<div>Username</div>
+															<div>Rate</div>
+														</div>
+													</div>
+													<div className='col-12 p-3 review-comment'>
+														<p>
+															Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+															ducimus alias, accusamus vitae, quia odio natus
+															necessitatibus corporis exercitationem repellendus
+															consequatur ad unde inventore quas cupiditate, nulla
+															eligendi non beatae.
+														</p>
+													</div>
+													<div className='col-12 d-flex'>
+														<div className='p-1'>Like 10</div>
+														<div className='p-1'>Dislike 3</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div>
-						<RateMovie
-							setShowModal={setShowModal}
-							defaultShow={showModal}
-							poster={movie.paster_path === null ? PosterNotFound : movie.poster_path}
-							user_id={user._id}
-							movie_id={movie.id}
-						/>
-					</div>
+					{user !== null && (
+						<div>
+							<RateMovie
+								setShowModal={setShowModal}
+								defaultShow={showModal}
+								poster={movie.paster_path === null ? PosterNotFound : movie.poster_path}
+								user_id={user._id}
+								movie_id={movie.id}
+								title={movie.title}
+								poster_path={movie.poster_path}
+							/>
+						</div>
+					)}
 				</div>
 			) : (
 				<div>Loading</div>

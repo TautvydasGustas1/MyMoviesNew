@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { ADD_WATCHED_MOVIE, GET_WATCHED_MOVIES } from './types';
+import { ADD_WATCHED_MOVIE, GET_WATCHED_MOVIES, CLEAR_WATCHED } from './types';
 import { showAlert } from './alert';
 
-export const postWatchedMovie = (user_id, movie_id, rate) => async (dispatch) => {
+export const postWatchedMovie = (user_id, movie_id, rate, title, poster_path) => async (dispatch) => {
 	try {
 		const config = {
 			headers: {
@@ -10,7 +10,7 @@ export const postWatchedMovie = (user_id, movie_id, rate) => async (dispatch) =>
 			}
 		};
 
-		const body = JSON.stringify({ user_id, movie_id, rate });
+		const body = JSON.stringify({ user_id, movie_id, rate, title, poster_path });
 
 		await axios.post(`/api/users/movies`, body, config);
 
@@ -50,4 +50,10 @@ export const getWatchedMovies = (id) => async (dispatch) => {
 		// });
 		console.log(error);
 	}
+};
+
+export const clearState = () => async (dispatch) => {
+	dispatch({
+		type: CLEAR_WATCHED
+	});
 };

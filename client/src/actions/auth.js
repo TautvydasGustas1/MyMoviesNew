@@ -11,7 +11,7 @@ import {
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { showAlert } from './alert';
-import { getWatchedMovies } from './watched';
+import { getWatchedMovies, clearState } from './watched';
 
 //Load user to state
 export const loadUser = () => async (dispatch) => {
@@ -99,5 +99,6 @@ export const register = (email, username, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
 	//dispatch({ type: CLEAR_PROFILE });
 	dispatch({ type: LOGOUT });
+	dispatch(clearState());
 	localStorage.removeItem('token');
 };

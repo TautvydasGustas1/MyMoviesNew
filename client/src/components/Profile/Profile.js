@@ -9,7 +9,7 @@ import Stats from './Stats/Stats';
 import Watching from './Watching/Watching';
 import Watched from './Watched/Watched';
 
-const Profile = ({ getUserProfile, match, profile: { loading, profile } }) => {
+const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched }) => {
 	useEffect(
 		() => {
 			getUserProfile(match.params.username);
@@ -81,7 +81,7 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile } }) => {
 						<div className='card'>
 							<div className='card-body'>
 								{page === 'stats' ? <Stats /> : ''}
-								{page === 'watched' ? <Watched /> : ''}
+								{page === 'watched' ? <Watched watched={watched} /> : ''}
 								{page === 'watching' ? <Watching /> : ''}
 							</div>
 						</div>
@@ -98,7 +98,8 @@ Profile.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	profile: state.profiles
+	profile: state.profiles,
+	watched: state.watched.watched
 });
 
 export default connect(mapStateToProps, { getUserProfile })(Profile);

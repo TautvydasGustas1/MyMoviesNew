@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 const pWidth = 'w500';
 let display = 'none';
 
-const RateMovie = ({ poster, defaultShow, setShowModal, user_id, movie_id, postWatchedMovie }) => {
+const RateMovie = ({ poster, defaultShow, setShowModal, user_id, movie_id, postWatchedMovie, title, poster_path }) => {
 	if (defaultShow) {
 		display = 'block';
 	} else {
@@ -16,7 +16,7 @@ const RateMovie = ({ poster, defaultShow, setShowModal, user_id, movie_id, postW
 	}
 
 	const postMovie = (rate) => {
-		postWatchedMovie(user_id, movie_id, rate);
+		postWatchedMovie(user_id, movie_id, rate, title, poster_path);
 		try {
 			setShowModal(false);
 		} catch (error) {
@@ -115,7 +115,9 @@ RateMovie.propTypes = {
 	defaultShow: PropTypes.bool.isRequired,
 	setShowModal: PropTypes.func.isRequired,
 	user_id: PropTypes.string.isRequired,
-	movie_id: PropTypes.number.isRequired
+	movie_id: PropTypes.number.isRequired,
+	title: PropTypes.string,
+	poster_path: PropTypes.string
 };
 
 export default connect(null, { postWatchedMovie })(RateMovie);

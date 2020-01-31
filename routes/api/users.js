@@ -6,6 +6,7 @@ const UserMovies = require('../../models/UserMovies');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const Review = require('../../models/Reviews');
 
 // @route   POST api/users
 // @desc    Register user
@@ -113,13 +114,15 @@ router.get('/movies/:user_id', async (req, res) => {
 // @acess   Private
 // @todo 	Make private
 router.post('/movies', async (req, res) => {
-	const { movie_id, user_id, rate } = req.body;
+	const { movie_id, user_id, rate, title, poster_path } = req.body;
 
 	try {
 		let movie = new UserMovies({
 			movie_id,
 			user_id,
-			rate
+			rate,
+			title,
+			poster_path
 		});
 
 		await movie.save();
@@ -130,4 +133,40 @@ router.post('/movies', async (req, res) => {
 	}
 });
 
+// @route   POST api/users/movies/:id/review
+// @desc    Add user review
+// @acess   Private
+// @todo 	Make private
+router.post('/movies/:movie_id/review', async (req, res) => {
+	const { username, comment, rate } = req.body;
+	const movie_id = req.params.movie_id;
+	try {
+		let review = new Review({
+			movie_id,
+			username,
+			comment,
+			rate
+		});
+
+		await review.save();
+		res.sendStatus(200);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
+
+// @route   GET api/users/movies/:movie_id/review
+// @desc    Get all reviews for the particular movie
+// @acess   Public
+// @todo 	Make private
+router.get('/movies/:movie_id/review', async (req, res) => {
+	try {
+		const reviews = await Review.find({ movie_id: req.params.movie_id }).select();
+		res.json(reviews);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
 module.exports = router;
