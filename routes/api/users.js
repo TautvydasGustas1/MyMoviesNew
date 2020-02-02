@@ -149,7 +149,7 @@ router.post('/movies/:movie_id/review', async (req, res) => {
 		});
 
 		await review.save();
-		res.sendStatus(200);
+		res.send(review);
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server error');
@@ -159,11 +159,47 @@ router.post('/movies/:movie_id/review', async (req, res) => {
 // @route   GET api/users/movies/:movie_id/review
 // @desc    Get all reviews for the particular movie
 // @acess   Public
-// @todo 	Make private
 router.get('/movies/:movie_id/review', async (req, res) => {
 	try {
 		const reviews = await Review.find({ movie_id: req.params.movie_id }).select();
 		res.json(reviews);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
+
+// @route   PUT api/users/movies/:movie_id/review
+// @desc    Get all reviews for the particular movie
+// @acess   Private
+// @todo 	Make private
+router.put('/movies/review/likes/:id', async (req, res) => {
+	try {
+		const { user_id } = req.body;
+		let exist = false;
+		let arrayEl = 0;
+		//Find review by id
+		let review = await Review.findById(req.params.id).select();
+		//Check if user already liked it
+		for (let el of review.likes) {
+			if (el.user_id === user_id) {
+				exist = true;
+				break;
+			}
+			arrayEl++;
+		}
+
+		if (exist) {
+			//if user already liked remove rom array
+			await review.likes.splice(arrayEl, 1);
+		} else {
+			// else add to like to array
+			await review.likes.push({ user_id: user_id });
+		}
+
+		//Add user_id to likes
+		await review.save();
+		res.json(review);
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server error');

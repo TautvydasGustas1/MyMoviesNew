@@ -17,3 +17,6 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const ADD_WATCHED_MOVIE = 'ADD_WATCHED_MOVIE';
 export const GET_WATCHED_MOVIES = 'GET_WATCHED_MOVIES';
 export const CLEAR_WATCHED = 'CLEAR_WATCHED';
+export const ADD_REVIEW = 'ADD_REVIEW';
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const LIKE_REVIEW = 'LIKE_REVIEW';

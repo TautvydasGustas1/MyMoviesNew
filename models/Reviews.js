@@ -16,6 +16,13 @@ const ReviewsSchema = new mongoose.Schema({
 	rate: {
 		type: Number
 	},
+	likes: [
+		{
+			user_id: {
+				type: Number
+			}
+		}
+	],
 	date: {
 		type: Date,
 		default: Date.now

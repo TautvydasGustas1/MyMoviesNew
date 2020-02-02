@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getMovie } from '../../../actions/movies';
+import { postReview, getReviews, likeUnlikeReview } from '../../../actions/review';
 import './Movie.css';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import { MOVIE_DB_URI } from '../../../utils/Constants';
@@ -11,19 +12,54 @@ import MovieRatingInformation from './MovieRatingInformation';
 import PosterNotFound from '../../images/posterNotFound.png';
 import RateMovie from './RateMovie/RateMovie';
 import avatarDef from '../../images/profile-avatar.png';
+import Review from './Review';
+import WriteReview from './WriteReview';
 
 const query = '?append_to_response=videos,credits';
 
-const Movie = ({ getMovie, movie: { loading, movie }, match, user, watched }) => {
+const Movie = ({
+	getMovie,
+	movie: { loading, movie, reviews },
+	match,
+	user,
+	watched,
+	postReview,
+	getReviews,
+	likeUnlikeReview
+}) => {
 	useEffect(
 		() => {
 			getMovie(match.params.id, query);
+			getReviews(match.params.id);
 		},
 		[
 			getMovie,
+			getReviews,
 			match.params.id
 		]
 	);
+
+	const handleLikeSubmit = (id) => {
+		likeUnlikeReview(id, user.id);
+	};
+
+	const handleSubmitReview = () => {
+		if (comment !== '') {
+			postReview(comment, user.username, movie.id);
+			setComment('');
+			setShowCommentPanel(false);
+		}
+	};
+
+	const [
+		showCommentPanel,
+		setShowCommentPanel
+	] = useState(false);
+
+	const [
+		comment,
+		setComment
+	] = useState('');
 
 	const [
 		showVideo,
@@ -117,40 +153,44 @@ const Movie = ({ getMovie, movie: { loading, movie }, match, user, watched }) =>
 										<div className='row'>
 											<div className='col-6'>Reviews</div>
 											<div className='col-6 text-right'>
-												<button className='btn btn-small btn-primary'>Write review</button>
+												<button
+													onClick={() => setShowCommentPanel(!showCommentPanel)}
+													className='btn btn-small btn-primary'
+												>
+													Write review
+												</button>
 											</div>
 										</div>
 									</div>
 									<div className='card-body'>
 										<div className='row'>
-											<div className='col'>
-												<div className='row'>
-													<div className='col-12 review-avatar'>
-														<img
-															className='rounded-circle  mr-2'
-															width='35px'
-															src={avatarDef}
-														/>
-														<div className='d-inline-block align-bottom'>
-															<div>Username</div>
-															<div>Rate</div>
-														</div>
-													</div>
-													<div className='col-12 p-3 review-comment'>
-														<p>
-															Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-															ducimus alias, accusamus vitae, quia odio natus
-															necessitatibus corporis exercitationem repellendus
-															consequatur ad unde inventore quas cupiditate, nulla
-															eligendi non beatae.
-														</p>
-													</div>
-													<div className='col-12 d-flex'>
-														<div className='p-1'>Like 10</div>
-														<div className='p-1'>Dislike 3</div>
-													</div>
+											{showCommentPanel ? (
+												<div className='col-12'>
+													<WriteReview
+														setComment={setComment}
+														comment={comment}
+														handleSubmitReview={handleSubmitReview}
+													/>
 												</div>
-											</div>
+											) : (
+												''
+											)}
+											{reviews.length !== 0 ? (
+												reviews.map((review, index) => (
+													<Review
+														key={index}
+														username={review.username}
+														rate={review.rate}
+														avatar={avatarDef}
+														comment={review.comment}
+														likes={review.likes}
+														handleLikeSubmit={handleLikeSubmit}
+														id={review._id}
+													/>
+												))
+											) : (
+												<div>No reviews</div>
+											)}
 										</div>
 									</div>
 								</div>
@@ -190,4 +230,4 @@ const mapStateToProps = (state) => ({
 	watched: state.watched
 });
 
-export default connect(mapStateToProps, { getMovie })(Movie);
+export default connect(mapStateToProps, { getMovie, postReview, getReviews, likeUnlikeReview })(Movie);
