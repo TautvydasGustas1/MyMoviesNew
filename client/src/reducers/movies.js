@@ -58,7 +58,7 @@ export default function(state = initialState, action) {
 		case LIKE_REVIEW:
 			return {
 				...state,
-				reviews: state.reviews.map((review) => (review.id === el_id ? { ...review, review: payload } : review))
+				reviews: state.reviews.map((review) => (review._id === el_id ? { ...review, likes: payload } : review))
 			};
 		default:
 			return state;

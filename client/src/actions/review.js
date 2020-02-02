@@ -68,7 +68,7 @@ export const likeUnlikeReview = (id, user_id) => async (dispatch) => {
 
 		dispatch({
 			type: LIKE_REVIEW,
-			payload: res.data,
+			payload: res.data.likes,
 			el_id: id
 		});
 	} catch (error) {
