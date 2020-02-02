@@ -80,7 +80,7 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched
 					<div className='profile-halfPage_container mt-3'>
 						<div className='card'>
 							<div className='card-body'>
-								{page === 'stats' ? <Stats /> : ''}
+								{page === 'stats' ? <Stats watched={watched} /> : ''}
 								{page === 'watched' ? <Watched watched={watched} /> : ''}
 								{page === 'watching' ? <Watching /> : ''}
 							</div>
