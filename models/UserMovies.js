@@ -19,7 +19,8 @@ const UserMoviesSchema = new mongoose.Schema({
 	},
 	poster_path: {
 		type: String
-	}
+	},
+	genres: []
 });
 
 module.exports = UserMovies = mongoose.model('userMovies', UserMoviesSchema);

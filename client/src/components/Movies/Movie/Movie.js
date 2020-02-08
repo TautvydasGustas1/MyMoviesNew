@@ -207,6 +207,7 @@ const Movie = ({
 								movie_id={movie.id}
 								title={movie.title}
 								poster_path={movie.poster_path}
+								genres={movie.genres}
 							/>
 						</div>
 					)}

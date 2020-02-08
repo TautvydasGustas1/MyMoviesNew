@@ -114,7 +114,7 @@ router.get('/movies/:user_id', async (req, res) => {
 // @acess   Private
 // @todo 	Make private
 router.post('/movies', async (req, res) => {
-	const { movie_id, user_id, rate, title, poster_path } = req.body;
+	const { movie_id, user_id, rate, title, poster_path, genres } = req.body;
 
 	try {
 		let movie = new UserMovies({
@@ -122,7 +122,8 @@ router.post('/movies', async (req, res) => {
 			user_id,
 			rate,
 			title,
-			poster_path
+			poster_path,
+			genres
 		});
 
 		await movie.save();
