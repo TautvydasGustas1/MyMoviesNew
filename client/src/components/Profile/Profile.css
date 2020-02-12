@@ -1,6 +1,6 @@
-.profile-buttons_button {
+/* .profile-buttons_button {
 	display: inline-block;
-	width: 33.333%;
+	width: 50%;
 	height: 60px;
 }
 
@@ -10,8 +10,8 @@
 
 .profile-buttons_button:after {
 	content: '';
-	position: absolute;
-	width: 33.333%;
+	position: relative;
+	width: 50%;
 	height: 0;
 	left: 0;
 	bottom: 0;
@@ -28,4 +28,39 @@
 
 .profile-buttons_list {
 	text-align: center;
+} */
+
+.profile-buttons_container {
+	height: 4em;
+	cursor: pointer;
+}
+
+
+.profile-buttons_container p {
+	font-size: 1.5em;
+	height: 100%;
+    margin: -2px;
+}
+
+.profile-button::after {
+	content: '';
+	height: 5px;
+	display: block;
+	background-color: blueviolet;
+	margin: -0.5px;
+}
+
+.active::after {
+	height: 3px;
+}
+.active p {
+	margin: -1px;
+}
+
+.profile-button:hover::after  {
+	height: 3px;
+}
+
+.profile-button:hover p  {
+	margin: -1px;
 }

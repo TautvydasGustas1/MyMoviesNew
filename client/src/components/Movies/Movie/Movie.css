@@ -1,12 +1,17 @@
 .video-container {
-	border: 1px solid black;
+    border: 1px solid black;
 }
 
 .name_tag-container {
-	border: 1px solid black;
+    border: 1px solid black;
 }
 
 .name_tag-inner {
-	font-size: 1.2vw;
-	font-weight: bold;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.card-custom-vid {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

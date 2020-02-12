@@ -2,107 +2,22 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'react-apexcharts';
 
-let rates = {
-	bad: 0,
-	average: 0,
-	good: 0,
-	perfect: 0
-};
-
-let allGenres = [
-	{
-		name: 'Action',
-		count: 0
-	},
-	{
-		name: 'Adventure',
-		count: 0
-	},
-	{
-		name: 'Animation',
-		count: 0
-	},
-	{
-		name: 'Comedy',
-		count: 0
-	},
-	{
-		name: 'Crime',
-		count: 0
-	},
-	{
-		name: 'Documentary',
-		count: 0
-	},
-	{
-		name: 'Drama',
-		count: 0
-	},
-	{
-		name: 'Family',
-		count: 0
-	},
-	{
-		name: 'Fantasy',
-		count: 0
-	},
-	{
-		name: 'History',
-		count: 0
-	},
-	{
-		name: 'Horror',
-		count: 0
-	},
-	{
-		name: 'Music',
-		count: 0
-	},
-	{
-		name: 'Mystery',
-		count: 0
-	},
-	{
-		name: 'Romance',
-		count: 0
-	},
-	{
-		name: 'Science Fiction',
-		count: 0
-	},
-	{
-		name: 'TV Movie',
-		count: 0
-	},
-	{
-		name: 'Thriller',
-		count: 0
-	},
-	{
-		name: 'War',
-		count: 0
-	},
-	{
-		name: 'Western',
-		count: 0
-	}
-];
-
-const calculateRatedMovies = (watched) => {
+const calculateRatedMovies = (watched, rates) => {
 	watched.forEach((movie) => {
 		if (movie.rate === 1) {
-			rates.bad++;
+			rates[0].count++;
 		} else if (movie.rate === 2) {
-			rates.average++;
+			rates[1].count++;
 		} else if (movie.rate === 4) {
-			rates.good++;
+			rates[2].count++;
 		} else if (movie.rate === 5) {
-			rates.perfect++;
+			rates[3].count++;
 		}
 	});
+	return rates;
 };
 
-const calulateGenresSum = (watched) => {
+const calulateGenresSum = (watched, allGenres) => {
 	watched.forEach((ele) => {
 		ele.genres.forEach((genre) => {
 			allGenres.forEach((obj) => {
@@ -112,37 +27,122 @@ const calulateGenresSum = (watched) => {
 			});
 		});
 	});
+	return allGenres;
 };
 
 const Stats = ({ watched }) => {
+	let rates = [
+		{
+			name: 'bad',
+			count: 0
+		},
+		{
+			name: 'average',
+			count: 0
+		},
+		{
+			name: 'good',
+			count: 0
+		},
+		{
+			name: 'perfect',
+			count: 0
+		},
+	]
+
+	let allGenres = [
+		{
+			name: 'Action',
+			count: 0
+		},
+		{
+			name: 'Adventure',
+			count: 0
+		},
+		{
+			name: 'Animation',
+			count: 0
+		},
+		{
+			name: 'Comedy',
+			count: 0
+		},
+		{
+			name: 'Crime',
+			count: 0
+		},
+		{
+			name: 'Documentary',
+			count: 0
+		},
+		{
+			name: 'Drama',
+			count: 0
+		},
+		{
+			name: 'Family',
+			count: 0
+		},
+		{
+			name: 'Fantasy',
+			count: 0
+		},
+		{
+			name: 'History',
+			count: 0
+		},
+		{
+			name: 'Horror',
+			count: 0
+		},
+		{
+			name: 'Music',
+			count: 0
+		},
+		{
+			name: 'Mystery',
+			count: 0
+		},
+		{
+			name: 'Romance',
+			count: 0
+		},
+		{
+			name: 'Science Fiction',
+			count: 0
+		},
+		{
+			name: 'TV Movie',
+			count: 0
+		},
+		{
+			name: 'Thriller',
+			count: 0
+		},
+		{
+			name: 'War',
+			count: 0
+		},
+		{
+			name: 'Western',
+			count: 0
+		}
+	];
+
 	useEffect(
 		() => {
-			rates = {
-				bad: 0,
-				average: 0,
-				good: 0,
-				perfect: 0
-			};
-
-			calculateRatedMovies(watched);
-			calulateGenresSum(watched);
-			let genreCategories = [];
+			calculateRatedMovies(watched, rates);
+			calulateGenresSum(watched, allGenres);
 			let genreData = [];
 			allGenres.forEach((ele) => {
-				genreCategories.push(ele.name);
 				genreData.push(ele.count);
 			});
+			const rateData = rates.map(obj => (obj.count))
 
 			SetGenresChart({
 				options: {
-					chart: {
-						id: 'basic-bar'
-					},
-					xasis: {
-						categories: [
-							'genreCategories',
-							'asdasd'
-						]
+					xaxis: {
+						tickAmount: genreData.lenght,
 					}
 				},
 				series: [
@@ -153,20 +153,20 @@ const Stats = ({ watched }) => {
 			});
 
 			setChartState({
+				options: {
+					yaxis: {
+						tickAmount: rateData.lenght,
+					}
+				},
 				series: [
 					{
-						data: [
-							rates.bad,
-							rates.average,
-							rates.good,
-							rates.perfect
-						]
+						data: rateData
 					}
 				]
 			});
 		},
 		[
-			watched
+			watched,
 		]
 	);
 
@@ -176,7 +176,7 @@ const Stats = ({ watched }) => {
 	] = useState({
 		options: {
 			chart: {
-				id: 'basic-bar'
+				type: 'bar'
 			},
 			xaxis: {
 				categories: [
@@ -190,18 +190,16 @@ const Stats = ({ watched }) => {
 				labels: {
 					formatter: function(val) {
 						return val;
-					}
-				}
+					},
+				},
+				forceNiceScale: true,
 			}
 		},
 		series: [
 			{
 				name: 'Movies rate',
 				data: [
-					rates.bad,
-					rates.average,
-					rates.good,
-					rates.perfect
+				
 				]
 			}
 		]
@@ -213,20 +211,41 @@ const Stats = ({ watched }) => {
 	] = useState({
 		options: {
 			chart: {
-				id: 'bar'
+				type: 'bar'
 			},
+			plotOptions: {
+				bar: {
+				  horizontal: true,
+				}
+			  },
+			  dataLabels: {
+				enabled: false
+			  },
 			xaxis: {
 				categories: [
-					'Action'
-				]
+					'Action',
+					'Adventure',
+					'Animation',
+					'Comedy',
+					'Crime',
+					'Documentary',
+					'Drama',
+					'Family',
+					'Fantasy',
+					'History',
+					'Horror',
+					'Music',
+					'Mystery',
+					'Romance',
+					'Science Fiction',
+					'TV Movie',
+					'Thriller',
+					'War',
+					'Western'
+				],
+				forceNiceScale: true,
 			},
-			yaxis: {
-				labels: {
-					formatter: function(val) {
-						return val;
-					}
-				}
-			}
+		
 		},
 		series: [
 			{
@@ -240,11 +259,11 @@ const Stats = ({ watched }) => {
 		<Fragment>
 			<div className='stats-container'>
 				<div className='row'>
-					<div className='col-6'>
+					<div className='col-lg-6 col-12'>
 						<Chart options={rateChart.options} series={rateChart.series} type='bar' width='100%' />
 					</div>
-					<div className='col-6'>
-						<Chart options={this.state.options} series={this.state.series} type='bar' height={400} />
+					<div className='col-lg-6 col-12'>
+						<Chart options={genresChart.options} series={genresChart.series} type='bar' width='100%' />
 					</div>
 				</div>
 			</div>

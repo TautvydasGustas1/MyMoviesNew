@@ -34,7 +34,7 @@ const App = () => {
 				<Fragment>
 					<Navbar />
 					<Alert />
-					<section className='container'>
+					<section className='container mt-3'>
 						<Switch>
 							<Route exact path='/faq' component={FAQ} />
 							<Route exact path='/movies' component={Movies} />

@@ -6,7 +6,6 @@ import ProfileAvatarWithInfo from './ProfileAvatarWithInfo/ProfileAvatarWithInfo
 import profileAvatar from '../images/profile-avatar.png';
 import './Profile.css';
 import Stats from './Stats/Stats';
-import Watching from './Watching/Watching';
 import Watched from './Watched/Watched';
 
 const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched }) => {
@@ -25,11 +24,19 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched
 		setPage
 	] = useState('stats');
 
-	const changeHalfPage = (pageName) => {
+	const [
+		active,
+		setActive
+	] = useState(true);
+
+	const changeHalfPage = (pageName, active) => {
 		if (page !== pageName) {
 			setPage(pageName);
 		}
+
+		setActive(!active);
 	};
+
 
 	return (
 		<Fragment>
@@ -60,21 +67,15 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched
 								)}
 							</div>
 						</div>
-						<div className='profile-buttons_container'>
-							<ul className='profile-buttons_list m-0 p-0'>
-								<li onClick={() => changeHalfPage('stats')} className='profile-buttons_button active'>
-									Stats
-								</li>
-								<li
-									onClick={() => changeHalfPage('watching')}
-									className='profile-buttons_button border-left border-right'
-								>
-									Watching
-								</li>
-								<li onClick={() => changeHalfPage('watched')} className='profile-buttons_button'>
-									Watched
-								</li>
-							</ul>
+						<div className='profile-buttons_container text-center'>
+							<div className="row h-100">
+								<div onClick={() => changeHalfPage('stats', active)} className={`col-6 pr-0 profile-button border-right ${active ? 'active' : 'inactive'}`}>
+									<p className="p-0">Stats</p>
+								</div>
+								<div onClick={() => changeHalfPage('watched', active)} className={`col-6 pl-0 profile-button ${active ? 'inactive' : 'active'}`}>
+									<p className="p-0">Watched</p>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className='profile-halfPage_container mt-3'>
@@ -82,7 +83,6 @@ const Profile = ({ getUserProfile, match, profile: { loading, profile }, watched
 							<div className='card-body'>
 								{page === 'stats' ? <Stats watched={watched} /> : ''}
 								{page === 'watched' ? <Watched watched={watched} /> : ''}
-								{page === 'watching' ? <Watching /> : ''}
 							</div>
 						</div>
 					</div>
