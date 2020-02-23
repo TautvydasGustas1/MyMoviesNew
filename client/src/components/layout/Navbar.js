@@ -4,15 +4,15 @@ import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Navbar extends React.Component {
-        state = {
-            SideDrawerOpen: false
-        };
+    state = {
+        SideDrawerOpen: false
+    };
 
     drawerToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return{SideDrawerOpen: !prevState.SideDrawerOpen};
+        this.setState(prevState => {
+            return { SideDrawerOpen: !prevState.SideDrawerOpen };
         });
-    }
+    };
 
     backdropClickHandler = () => {
         this.setState({
@@ -23,15 +23,15 @@ class Navbar extends React.Component {
     render() {
         let backdrop;
 
-        if(this.state.SideDrawerOpen) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>;
+        if (this.state.SideDrawerOpen) {
+            backdrop = <Backdrop click={this.backdropClickHandler} />;
         }
 
-        return(
+        return (
             <div>
-                <Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                        <SideDrawer show={this.state.SideDrawerOpen}/>
-                        {backdrop}
+                <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
+                <SideDrawer show={this.state.SideDrawerOpen} />
+                {backdrop}
             </div>
         );
     }

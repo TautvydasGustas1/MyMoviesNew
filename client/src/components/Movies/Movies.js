@@ -1,48 +1,31 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import MovieCardWide from './MovieCardWide/MovieCardWide';
+import React from 'react';
 import './Movies.css';
-import { connect } from 'react-redux';
-import { getTrendingMovies } from '../../actions/movies';
 import { withRouter } from 'react-router-dom';
+import MovieCardWide from './MovieCardWide/MovieCardWide';
+import trendingMoviesImage from '../images/trending-image.jpg';
+import popularMoviesImage from '../images/popular-image.jpg';
 
-const Movies = ({ getTrendingMovies, movies: { movies, loading } }) => {
-	useEffect(
-		() => {
-			getTrendingMovies(1);
-		},
-		[
-			getTrendingMovies
-		]
-	);
-
-	return (
-		<div className='movie_list-container row'>
-			{!loading ? (
-				movies.results.map((movie) => (
-					<div key={movie.id} className='col-6'>
-						<MovieCardWide
-							title={movie.title}
-							id={movie.id}
-							backdrop_path={movie.backdrop_path}
-							overview={movie.overview}
-						/>
-					</div>
-				))
-			) : (
-				<div>loading</div>
-			)}
-		</div>
-	);
+const Movies = () => {
+    return (
+        <div className='row'>
+            <div className='col-lg-6 col-12'>
+                <MovieCardWide
+                    link='/movies/browse/trending'
+                    image={trendingMoviesImage}
+                    title={'Trending Movies'}
+                    text={'asdjadkadjaksd aklsd jalsdkj alsdk jal'}
+                />
+            </div>
+            <div className='col-lg-6 col-12'>
+                <MovieCardWide
+                    link='/movies/browse/popular'
+                    image={popularMoviesImage}
+                    title={'Popular Movies'}
+                    text={'asdjadkadjaksd aklsd jalsdkj alsdk jal'}
+                />
+            </div>
+        </div>
+    );
 };
 
-Movies.propTypes = {
-	movies: PropTypes.object.isRequired,
-	getTrendingMovies: PropTypes.func.isRequired
-};
-
-const mapStateToProps = (state) => ({
-	movies: state.movies
-});
-
-export default withRouter(connect(mapStateToProps, { getTrendingMovies })(Movies));
+export default withRouter(Movies);

@@ -19,6 +19,7 @@ import Alert from './components/layout/Alerts/Alert';
 import Profile from './components/Profile/Profile';
 import { loadUser } from './actions/auth';
 import Popular_Movies from './components/Popular Movies/Popular_Movies';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -38,7 +39,7 @@ const App = () => {
                     <section className='container mt-3'>
                         <Switch>
                             <Route exact path='/faq' component={FAQ} />
-                            <Route exact path='/movies' component={Movies} />
+                            <Route exact path='/explore' component={Movies} />
                             <Route
                                 exact
                                 path='/movies/browse/trending'
@@ -66,6 +67,7 @@ const App = () => {
                                 path='/profile/:username'
                                 component={Profile}
                             />
+                            <Route component={NotFoundPage} />
                         </Switch>
                     </section>
                     <Footer />

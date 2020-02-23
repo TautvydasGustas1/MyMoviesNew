@@ -45,11 +45,7 @@ const Profile = ({
                             <div
                                 className='avatar-info_options text-right'
                                 style={{ marginBottom: '10em' }}
-                            >
-                                <div>
-                                    <a href='#!'>Edit profile</a>
-                                </div>
-                            </div>
+                            ></div>
                             <div className='avatar-info_container d-inline-flex'>
                                 {loading ? (
                                     <div>Loading</div>
@@ -58,7 +54,7 @@ const Profile = ({
                                         avatar={profileAvatar}
                                         email={profile.email}
                                         username={profile.username}
-                                        likesText={'50 likes'}
+                                        likesText={`${watched.length} movies watched`}
                                     />
                                 )}
                             </div>

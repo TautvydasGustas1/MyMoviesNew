@@ -6,8 +6,7 @@ import {
     AUTH_ERROR,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
-    LOGOUT,
-    CLEAR_PROFILE
+    LOGOUT
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 import { showAlert } from './alert';

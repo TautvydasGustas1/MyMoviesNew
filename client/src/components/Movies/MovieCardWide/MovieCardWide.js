@@ -1,32 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './MovieCardWide.css';
+import { useHistory } from 'react-router-dom';
 
-const imageWidth = '780'; // for changing the width of image
-const uri = `https://image.tmdb.org/t/p/w${imageWidth}`; // URI to movies api for getting the images
+const MovieCardWide = ({ link, image, title, text }) => {
+    const history = useHistory();
 
-const MovieCardWide = ({ id, title, overview, backdrop_path }) => {
-	return (
-		<div className='movie_card-container'>
-			<div className='row'>
-				<div
-					className='movie_card-wide col-12'
-					style={{
-						backgroundImage: `url(${uri}${backdrop_path})`
-					}}
-				/>
-				<div className='col-12 movie_card-name'>{title}</div>
-				<div className='col-12 movie_card-summary'>{overview}</div>
-			</div>
-		</div>
-	);
+    function handleClick() {
+        history.push(link);
+    }
+
+    return (
+        <div
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+                handleClick();
+            }}
+            className='card mb-3'
+        >
+            <img className='card-img-top' src={image} alt={title} />
+            <div className='card-body'>
+                <h5 className='card-title'>{title}</h5>
+                <p className='card-text'>{text}</p>
+            </div>
+        </div>
+    );
 };
 
 MovieCardWide.propTypes = {
-	id: PropTypes.number.isRequired,
-	title: PropTypes.string.isRequired,
-	backdrop_path: PropTypes.string.isRequired,
-	overview: PropTypes.string.isRequired
+    link: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string
 };
 
 export default MovieCardWide;
