@@ -7,58 +7,41 @@ import {
     SUCCESS_SEARCH_MOVIES,
     ERROR_SEARCH_MOVIES,
     GET_MOVIE_DATA,
-    CLEAR_STATE
+    CLEAR_STATE,
+    SUCCESS_SEARCH_USERS,
+    ERROR_SEARCH_USERS,
+    REQUEST_SEARCH_USERS
 } from './types';
 
-const requestMoviesTrending = () => {
-    return {
-        type: REQUEST_MOVIES_TRENDING
-    };
-};
-
-const successMoviesTrending = movies => {
-    return {
-        type: SUCCESS_MOVIES_TRENDING,
-        payload: movies
-    };
-};
-
-const errorMoviesTrending = error => {
-    return {
-        type: ERROR_MOVIES_TRENDING,
-        payload: error
-    };
-};
-
-const requestSearchMovies = () => {
+const requestAction = typeName => {
     return {
         type: REQUEST_SEARCH_MOVIES
     };
 };
 
-const successSearchMovies = searchResults => {
+const successAction = (data, typeName) => {
     return {
-        type: SUCCESS_SEARCH_MOVIES,
-        payload: searchResults
+        type: typeName,
+        payload: data
     };
 };
 
-const errorSearchMovies = error => {
+const errorAction = (error, typeName) => {
     return {
-        type: ERROR_SEARCH_MOVIES,
+        type: typeName,
         payload: error
     };
 };
 
 export const getTrendingMovies = page => async dispatch => {
-    dispatch(requestMoviesTrending());
+    dispatch(requestAction(REQUEST_MOVIES_TRENDING));
     await axios
         .get(`/api/movies/trending/movies?page=${page}`)
         .then(response => {
-            dispatch(successMoviesTrending(response.data));
+            dispatch(successAction(response.data, SUCCESS_MOVIES_TRENDING));
         })
         .catch(error => {
-            dispatch(errorMoviesTrending(error.message));
+            dispatch(errorAction(error.message, ERROR_MOVIES_TRENDING));
         });
 };
 
@@ -81,15 +64,27 @@ export const getMovie = (id, query) => async dispatch => {
 };
 
 export const searchMovie = (searchQuery, page_number) => async dispatch => {
-    dispatch(requestSearchMovies());
+    dispatch(requestAction(REQUEST_SEARCH_MOVIES));
     const fullQuery = `?searchQuery=${searchQuery}&page=${page_number}`;
     await axios
         .get(`/api/movies/search${fullQuery}`)
         .then(response => {
-            dispatch(successSearchMovies(response.data));
+            dispatch(successAction(response.data, SUCCESS_SEARCH_MOVIES));
         })
         .catch(error => {
-            dispatch(errorSearchMovies(error.message));
+            dispatch(errorAction(error.message, ERROR_SEARCH_MOVIES));
+        });
+};
+
+export const searchUsers = searchQuery => async dispatch => {
+    dispatch(requestAction(REQUEST_SEARCH_USERS));
+    await axios
+        .get(`/api/users/search/users/${searchQuery}`)
+        .then(response => {
+            dispatch(successAction(response.data, SUCCESS_SEARCH_USERS));
+        })
+        .catch(error => {
+            dispatch(errorAction(error.message, ERROR_SEARCH_USERS));
         });
 };
 

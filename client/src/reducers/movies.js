@@ -9,7 +9,10 @@ import {
     CLEAR_STATE,
     ADD_REVIEW,
     GET_REVIEWS,
-    LIKE_REVIEW
+    LIKE_REVIEW,
+    SUCCESS_SEARCH_USERS,
+    ERROR_SEARCH_USERS,
+    REQUEST_SEARCH_USERS
 } from '../actions/types';
 
 const initialState = {
@@ -18,7 +21,8 @@ const initialState = {
     error: '',
     movie: null,
     reviews: [],
-    isFetching: false
+    isFetching: false,
+    users: []
 };
 
 export default function(state = initialState, action) {
@@ -33,17 +37,26 @@ export default function(state = initialState, action) {
                 loading: false,
                 isFetching: false
             };
+        case REQUEST_SEARCH_USERS:
         case REQUEST_SEARCH_MOVIES:
         case REQUEST_MOVIES_TRENDING:
             return {
                 ...state,
                 isFetching: true
             };
+        case ERROR_SEARCH_USERS:
         case ERROR_SEARCH_MOVIES:
         case ERROR_MOVIES_TRENDING:
             return {
                 isFetching: false,
                 error: payload
+            };
+        case SUCCESS_SEARCH_USERS:
+            return {
+                ...state,
+                users: payload,
+                loading: false,
+                isFetching: false
             };
         case GET_MOVIE_DATA:
             return {

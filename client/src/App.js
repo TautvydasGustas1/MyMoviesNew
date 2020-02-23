@@ -20,37 +20,53 @@ import Profile from './components/Profile/Profile';
 import { loadUser } from './actions/auth';
 
 if (localStorage.token) {
-	setAuthToken(localStorage.token);
+    setAuthToken(localStorage.token);
 }
 
 const App = () => {
-	useEffect(() => {
-		store.dispatch(loadUser());
-	}, []);
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
 
-	return (
-		<Provider store={store}>
-			<Router>
-				<Fragment>
-					<Navbar />
-					<Alert />
-					<section className='container mt-3'>
-						<Switch>
-							<Route exact path='/faq' component={FAQ} />
-							<Route exact path='/movies' component={Movies} />
-							<Route exact path='/movies/browse/trending' component={Browse} />
-							<Route exact path='/movies/:id' component={Movie} />
-							<Route exact path='/search' component={SearchPage} />
-							<Route exact path='/login' component={Login} />
-							<Route exact path='/register' component={Register} />
-							<PrivateRoute exact path='/profile/:username' component={Profile} />
-						</Switch>
-					</section>
-					<Footer />
-				</Fragment>
-			</Router>
-		</Provider>
-	);
+    return (
+        <Provider store={store}>
+            <Router>
+                <Fragment>
+                    <Navbar />
+                    <Alert />
+                    <section className='container mt-3'>
+                        <Switch>
+                            <Route exact path='/faq' component={FAQ} />
+                            <Route exact path='/movies' component={Movies} />
+                            <Route
+                                exact
+                                path='/movies/browse/trending'
+                                component={Browse}
+                            />
+                            <Route exact path='/movies/:id' component={Movie} />
+                            <Route
+                                exact
+                                path='/search'
+                                component={SearchPage}
+                            />
+                            <Route exact path='/login' component={Login} />
+                            <Route
+                                exact
+                                path='/register'
+                                component={Register}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/profile/:username'
+                                component={Profile}
+                            />
+                        </Switch>
+                    </section>
+                    <Footer />
+                </Fragment>
+            </Router>
+        </Provider>
+    );
 };
 export default App;
 //<PrivateRoute exact path='/dashboard' component={Login} />

@@ -1,1 +1,5 @@
-
+.user-search_card {
+    align-items: center;
+    flex-flow: row;
+    cursor: pointer;
+}

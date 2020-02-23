@@ -67,29 +67,29 @@ const RateMovie = ({
                                 }}
                                 className='card m-auto card-custom'
                             ></div>
-                            <div className='modal-buttons_container w-50'>
+                            <div className='modal-buttons_container'>
                                 <div className='row no-gutters'>
-                                    <div className='col-3'>
+                                    <div className='col-lg-3 col-md-3 col-6'>
                                         <button
                                             onClick={() => {
                                                 postMovie(1);
                                             }}
-                                            className='btn btn-primary btn-square btn-block'
+                                            className='btn btn-secondary btn-square btn-block'
                                         >
                                             Bad
                                         </button>
                                     </div>
-                                    <div className='col-3'>
+                                    <div className='col-lg-3 col-md-3 col-6'>
                                         <button
                                             onClick={() => {
                                                 postMovie(2);
                                             }}
-                                            className='btn btn-primary btn-square btn-block'
+                                            className='btn btn-warning btn-square btn-block'
                                         >
                                             Average
                                         </button>
                                     </div>
-                                    <div className='col-3'>
+                                    <div className='col-lg-3 col-md-3 col-6'>
                                         <button
                                             onClick={() => {
                                                 postMovie(4);
@@ -99,12 +99,12 @@ const RateMovie = ({
                                             Good
                                         </button>
                                     </div>
-                                    <div className='col-3'>
+                                    <div className='col-lg-3 col-md-3 col-6'>
                                         <button
                                             onClick={() => {
                                                 postMovie(5);
                                             }}
-                                            className='btn btn-primary btn-square btn-block'
+                                            className='btn btn-success btn-square btn-block'
                                         >
                                             Perfect
                                         </button>

@@ -43,7 +43,7 @@ const Movie = ({
     }, [getMovie, getReviews, match.params.id, clearState]);
 
     const handleLikeSubmit = id => {
-        likeUnlikeReview(id, user.id);
+        likeUnlikeReview(id, user._id);
     };
 
     const handleSubmitReview = () => {
@@ -157,16 +157,18 @@ const Movie = ({
                                         <div className='row'>
                                             <div className='col-6'>Reviews</div>
                                             <div className='col-6 text-right'>
-                                                <button
-                                                    onClick={() =>
-                                                        setShowCommentPanel(
-                                                            !showCommentPanel
-                                                        )
-                                                    }
-                                                    className='btn btn-small btn-primary'
-                                                >
-                                                    Write review
-                                                </button>
+                                                {user !== null && (
+                                                    <button
+                                                        onClick={() =>
+                                                            setShowCommentPanel(
+                                                                !showCommentPanel
+                                                            )
+                                                        }
+                                                        className='btn btn-small btn-primary'
+                                                    >
+                                                        Write review
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -187,23 +189,37 @@ const Movie = ({
                                             )}
                                             {reviews.length !== 0 ? (
                                                 reviews.map((review, index) => (
-                                                    <Review
+                                                    <div
                                                         key={index}
-                                                        username={
-                                                            review.username
+                                                        className={
+                                                            'col-12 mb-1 ' +
+                                                            (index ===
+                                                            reviews.length - 1
+                                                                ? ''
+                                                                : 'border-bottom')
                                                         }
-                                                        rate={review.rate}
-                                                        avatar={avatarDef}
-                                                        comment={review.comment}
-                                                        likes={review.likes}
-                                                        handleLikeSubmit={
-                                                            handleLikeSubmit
-                                                        }
-                                                        id={review._id}
-                                                    />
+                                                    >
+                                                        <Review
+                                                            username={
+                                                                review.username
+                                                            }
+                                                            rate={review.rate}
+                                                            avatar={avatarDef}
+                                                            comment={
+                                                                review.comment
+                                                            }
+                                                            likes={review.likes}
+                                                            handleLikeSubmit={
+                                                                handleLikeSubmit
+                                                            }
+                                                            id={review._id}
+                                                        />
+                                                    </div>
                                                 ))
                                             ) : (
-                                                <div>No reviews</div>
+                                                <div className='col-12'>
+                                                    No reviews
+                                                </div>
                                             )}
                                         </div>
                                     </div>

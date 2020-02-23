@@ -16,13 +16,24 @@
 
 .modal-buttons_container {
     margin: auto;
-    width: 400px;
 }
 
 .card-container_extra {
-    margin-top: 15vh;
+    margin-top: 10vh;
 }
 
 .btn.btn-square {
     border-radius: 0;
+}
+
+@media (min-width: 1200px) {
+    .modal-buttons_container {
+        width: 400px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .modal-buttons_container {
+        width: 400px;
+    }
 }
