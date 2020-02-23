@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const request = require('request');
 //const { check, validationResult } = require('express-validator'); // Maybe will be needed in the future
 
-// @route   GET api/movies/trending/movie
+// @route   GET api/movies/trending/movies
 // @desc    Get trending movies
 // @acess   Public
 // Maybe in the future change to POST?
@@ -22,6 +22,36 @@ router.get('/trending/movies', async (req, res) => {
         };
 
         //Request of trending movies
+        request(options, (error, response, body) => {
+            if (error) console.error(error);
+            if (response.statusCode !== 200) {
+                return res.status(404).json({ msg: 'No movies found' });
+            }
+            res.json(JSON.parse(body));
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   GET api/movies/popular/movies
+// @desc    Get popular movies
+// @acess   Public
+// Maybe in the future change to POST?
+router.get('/popular/movies', async (req, res) => {
+    try {
+        const page = req.query.page;
+
+        const options = {
+            uri: `https://api.themoviedb.org/3/movie/popular?api_key=${config.get(
+                'MOVIES_API_KEY'
+            )}&page=${page}`,
+            method: 'GET',
+            headers: { 'user-agent': 'node.js' }
+        };
+
+        //Request of popular movies
         request(options, (error, response, body) => {
             if (error) console.error(error);
             if (response.statusCode !== 200) {

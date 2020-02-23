@@ -45,6 +45,18 @@ export const getTrendingMovies = page => async dispatch => {
         });
 };
 
+export const getPopularMovies = page => async dispatch => {
+    dispatch(requestAction(REQUEST_MOVIES_TRENDING));
+    await axios
+        .get(`/api/movies/popular/movies?page=${page}`)
+        .then(response => {
+            dispatch(successAction(response.data, SUCCESS_MOVIES_TRENDING));
+        })
+        .catch(error => {
+            dispatch(errorAction(error.message, ERROR_MOVIES_TRENDING));
+        });
+};
+
 export const getMovie = (id, query) => async dispatch => {
     try {
         const res = await axios.get(`/api/movies/movie/${id}${query}`);

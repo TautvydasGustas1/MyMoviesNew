@@ -18,6 +18,7 @@ import Register from './components/auth/Register/Register';
 import Alert from './components/layout/Alerts/Alert';
 import Profile from './components/Profile/Profile';
 import { loadUser } from './actions/auth';
+import Popular_Movies from './components/Popular Movies/Popular_Movies';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -54,6 +55,11 @@ const App = () => {
                                 exact
                                 path='/register'
                                 component={Register}
+                            />
+                            <Route
+                                exact
+                                path='/movies/browse/popular'
+                                component={Popular_Movies}
                             />
                             <PrivateRoute
                                 exact
