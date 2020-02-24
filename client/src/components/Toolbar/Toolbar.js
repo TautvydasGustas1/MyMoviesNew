@@ -51,7 +51,12 @@ const Toolbar = ({
                     <div className='navbar_primary-links'>
                         <ul>
                             <li>
-                                <Link to='/explore'>Explore</Link>
+                                <Link to='/movies/browse/trending'>
+                                    Trending
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/movies/browse/popular'>Popular</Link>
                             </li>
                             <li>
                                 <Link to='/search'>Search</Link>

@@ -2,8 +2,10 @@ html {
     min-height: 100vh;
     position: relative;
     overflow-y: scroll;
+    background-color: whitesmoke;
 }
 
 #root {
-    margin-bottom: 20rem;
+    margin-bottom: 23rem;
+    background-color: whitesmoke;
 }

@@ -15,7 +15,7 @@ const MovieCardWide = ({ link, image, title, text }) => {
             onClick={() => {
                 handleClick();
             }}
-            className='card mb-3'
+            className='card mb-3 grow-wide'
         >
             <img className='card-img-top' src={image} alt={title} />
             <div className='card-body'>

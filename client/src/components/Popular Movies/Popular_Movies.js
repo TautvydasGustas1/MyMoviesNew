@@ -26,16 +26,10 @@ const Popular_Movies = ({
 
     return (
         <section className='browse-container'>
-            <div className='browse_summary-container'>
+            <div className='browse_summary-container text-center'>
                 <h1>Popular Movies</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eius, inventore at dicta, explicabo nulla hic ducimus quas
-                    natus est sed expedita. Obcaecati expedita asperiores earum
-                    rerum! Sint culpa veniam repellendus!
-                </p>
             </div>
-            <div className='browse_movies-container'>
+            <div className='browse_movies-container mt-5'>
                 {!isFetching && movies.length !== 0 ? (
                     <div className='browse_movies-container_inner'>
                         <div className='row justify-content-start'>

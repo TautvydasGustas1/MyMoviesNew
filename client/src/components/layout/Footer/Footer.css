@@ -1,5 +1,5 @@
 .footer-middle {
-    background-color: blueviolet;
+    background-color: #17173f;
     color: white;
     padding-bottom: 1px;
     text-align: center;
@@ -33,5 +33,6 @@
 }
 
 .footer-middle ul li a:hover {
-    color: white;
+    color: orange;
+    text-decoration: none;
 }

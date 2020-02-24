@@ -36,6 +36,5 @@ export const getUserWatchedMovies = id => async dispatch => {
         // 	type: GET_MOVIES_TRENDING,
         // 	payload: { msg: error.response.statusText, status: error.response.status }
         // });
-        console.log(error);
     }
 };

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer/Footer';
-import FAQ from './components/FAQ/FAQ';
 import 'bootstrap/dist/css/bootstrap.min.css'; // @Change in the future
 import Movies from './components/Movies/Movies';
 import { Provider } from 'react-redux';
@@ -38,8 +37,7 @@ const App = () => {
                     <Alert />
                     <section className='container mt-3'>
                         <Switch>
-                            <Route exact path='/faq' component={FAQ} />
-                            <Route exact path='/explore' component={Movies} />
+                            <Route exact path='/' component={Movies} />
                             <Route
                                 exact
                                 path='/movies/browse/trending'
