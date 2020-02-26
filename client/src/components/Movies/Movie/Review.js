@@ -22,7 +22,6 @@ const Review = ({
                 />
                 <div className='d-inline-block align-bottom'>
                     <div>{username}</div>
-                    <div>{rate}</div>
                 </div>
             </div>
             <div className='col-12 p-3 review-comment'>
