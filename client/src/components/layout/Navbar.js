@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Backdrop from '../Backdrop/Backdrop';
@@ -28,11 +28,11 @@ class Navbar extends React.Component {
         }
 
         return (
-            <div>
+            <Fragment>
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
                 <SideDrawer show={this.state.SideDrawerOpen} />
                 {backdrop}
-            </div>
+            </Fragment>
         );
     }
 }

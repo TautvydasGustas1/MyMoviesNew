@@ -75,4 +75,3 @@ const App = () => {
     );
 };
 export default App;
-//<PrivateRoute exact path='/dashboard' component={Login} />
