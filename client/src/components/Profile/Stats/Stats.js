@@ -198,7 +198,7 @@ const Stats = ({ watched }) => {
             },
             plotOptions: {
                 bar: {
-                    horizontal: true
+                    horizontal: false
                 }
             },
             dataLabels: {

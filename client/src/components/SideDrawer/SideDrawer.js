@@ -7,7 +7,8 @@ import { logout } from '../../actions/auth';
 const sideDrawer = ({
     show,
     auth: { loading, isAuthenticated, user },
-    logout
+    logout,
+    click
 }) => {
     let drawerClasses = ['side-drawer'];
     if (show) {
@@ -16,13 +17,20 @@ const sideDrawer = ({
 
     const localUsername = !loading && user !== null && user.username;
 
+    function closeAndLogout() {
+        logout();
+        click();
+    }
+
     const authLinks = (
         <div style={{ marginBottom: '10%' }}>
             <li>
-                <Link to={`/profile/${localUsername}`}>Profile</Link>
+                <Link onClick={() => click()} to={`/profile/${localUsername}`}>
+                    Profile
+                </Link>
             </li>
             <li>
-                <a href='#!' onClick={logout}>
+                <a href='#!' onClick={() => closeAndLogout()}>
                     Logout
                 </a>
             </li>
@@ -32,11 +40,14 @@ const sideDrawer = ({
     const guestLinks = (
         <div style={{ marginBottom: '10%' }}>
             <li>
-                <Link to='/login'>Log in</Link>
+                <Link onClick={() => click()} to='/login'>
+                    Log in
+                </Link>
             </li>
-            <div className='navbar_seperator'>|</div>
             <li>
-                <Link to='/register'>Sign up</Link>
+                <Link onClick={() => click()} to='/register'>
+                    Sign up
+                </Link>
             </li>
         </div>
     );
@@ -46,16 +57,24 @@ const sideDrawer = ({
             <ul>
                 {!loading && (isAuthenticated ? authLinks : guestLinks)}
                 <li>
-                    <Link to='/'>Home</Link>
+                    <Link onClick={() => click()} to='/'>
+                        Home
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/movies/browse/trending'>Trending</Link>
+                    <Link onClick={() => click()} to='/movies/browse/trending'>
+                        Trending
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/movies/browse/popular'>Popular</Link>
+                    <Link onClick={() => click()} to='/movies/browse/popular'>
+                        Popular
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/search'>Search</Link>
+                    <Link onClick={() => click()} to='/search'>
+                        Search
+                    </Link>
                 </li>
             </ul>
         </nav>

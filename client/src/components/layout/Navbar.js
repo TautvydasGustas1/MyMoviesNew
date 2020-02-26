@@ -30,7 +30,10 @@ class Navbar extends React.Component {
         return (
             <Fragment>
                 <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-                <SideDrawer show={this.state.SideDrawerOpen} />
+                <SideDrawer
+                    click={this.backdropClickHandler}
+                    show={this.state.SideDrawerOpen}
+                />
                 {backdrop}
             </Fragment>
         );

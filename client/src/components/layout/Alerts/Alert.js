@@ -12,7 +12,8 @@ const Alert = ({ alerts }) =>
                 boxShadow: '0 2px 4px 1px grey',
                 zIndex: '15',
                 position: 'fixed',
-                width: '100%'
+                width: '100%',
+                marginTop: '-24px'
             }}
             className={`conatainer-fluid p-2 text-center bg-${alert.bgColor}  text-light`}
         >

@@ -60,7 +60,7 @@ const Search = ({
             <div className='col-lg-2 col-5'>
                 <Dropdown>
                     <Dropdown.Toggle variant='secondary' id='dropdown-basic'>
-                        Search By {dropdownState}
+                        {dropdownState}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {ddOptions.map((option, index) => (
