@@ -1,4 +1,9 @@
 # MyMoviesNew
  Website made with react, node.js, express, mongoDB
  
-To launch a program run script npm run dev
+## Usage
+
+```bash
+> npm install 
+> npm run dev
+```
