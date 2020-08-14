@@ -1,7 +1,9 @@
 # MyMoviesNew
 A website that lets to see trending, popular movies, write reviews, and also rate your seen movies.
 
-![](header.png)
+![](header.png)  
+![](picture.png)  
+
 
 # Link to live version 
 https://tranquil-headland-23548.herokuapp.com/
