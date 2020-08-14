@@ -1,9 +1,10 @@
 # MyMoviesNew
 A website that lets to see trending, popular movies, write reviews, and also rate your seen movies.
 
+![](picture2.png)  
 ![](header.png)  
 ![](picture.png)  
-![](picture2.png)  
+
 
 
 # Link to live version 
