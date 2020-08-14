@@ -23,7 +23,7 @@ npm start
 
 ## Meta
 
-Tautvydas Gustas - https://github.com/TautvydasGustas1 / https://www.linkedin.com/in/tautvydas-gustas/
+Tautvydas Gustas - https://github.com/TautvydasGustas1 / https://www.linkedin.com/in/tautvydas-gustas/  
 Licence - MIT
 
 ## Contributing
