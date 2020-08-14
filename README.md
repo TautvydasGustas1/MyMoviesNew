@@ -3,6 +3,7 @@ A website that lets to see trending, popular movies, write reviews, and also rat
 
 ![](header.png)  
 ![](picture.png)  
+![](picture2.png)  
 
 
 # Link to live version 
