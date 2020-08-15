@@ -1,90 +1,91 @@
 .navbar {
-    position: fixed;
-    width: 100%;
-    background-color: #17173f;
-    top: 0;
-    left: 0;
-    height: 56px;
-    box-shadow: 0px 0px 7px 0px;
+  position: fixed;
+  width: 100%;
+  background-color: #17173f;
+  top: 0;
+  left: 0;
+  height: 56px;
+  box-shadow: 0px 0px 7px 0px;
+  z-index: 99999;
 }
 .navbar_logo {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .navbar_logo a {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .navbar_navigation {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    padding: 0 1rem;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .navbar_logo a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
 .navbar_navigation-items a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .navbar_logo a:hover,
 .navbar_logo a:active {
-    color: orange;
-    text-decoration: none;
+  color: orange;
+  text-decoration: none;
 }
 
 .navbar_navigation-items a:hover,
 .navbar_navigation-items a:active {
-    color: orange;
-    text-decoration: none;
+  color: orange;
+  text-decoration: none;
 }
 
 .navbar_navigation-items ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .navbar_navigation-items li {
-    padding: 0 0.5rem;
+  padding: 0 0.5rem;
 }
 
 .spacer {
-    flex: 1;
+  flex: 1;
 }
 
 @media (max-width: 768px) {
-    .navbar_navigation-items {
-        display: none;
-    }
+  .navbar_navigation-items {
+    display: none;
+  }
 }
 
 @media (min-width: 769px) {
-    .navbar_toggle-button {
-        display: none;
-    }
+  .navbar_toggle-button {
+    display: none;
+  }
 
-    .navbar_logo {
-        margin-left: 0;
-    }
+  .navbar_logo {
+    margin-left: 0;
+  }
 }
 
 .navbar_seperator {
-    color: white;
+  color: white;
 }
 
 .navbar_primary-links {
-    color: white;
+  color: white;
 }
 
 .navbar_navigation-items {
-    padding-left: 3.5rem;
+  padding-left: 3.5rem;
 }

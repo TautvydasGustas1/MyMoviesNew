@@ -1,11 +1,11 @@
 html {
-    min-height: 100vh;
-    position: relative;
-    overflow-y: scroll;
-    background-color: whitesmoke;
+  min-height: 100vh;
+  position: relative;
+  overflow-y: scroll;
+  background-color: whitesmoke;
 }
 
 #root {
-    margin-bottom: 23rem;
-    background-color: whitesmoke;
+  margin-bottom: 23rem;
+  background-color: whitesmoke;
 }
