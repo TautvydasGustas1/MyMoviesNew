@@ -22,7 +22,9 @@ https://tranquil-headland-23548.herokuapp.com/
 
 ```sh
 npm install
-npm start
+cd client
+npm install
+npm run dev
 ```
 
 ## Meta
