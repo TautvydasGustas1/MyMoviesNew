@@ -9,7 +9,7 @@ connectDB();
 //Init Middlawere
 app.use(express.json({ extended: false }));
 
-app.get("/", (req, res) => res.send("API RUNNING"));
+app.get("/api/", (req, res) => res.send("API RUNNING"));
 
 //Define routes
 app.use("/api/users", require("./routes/api/users"));
