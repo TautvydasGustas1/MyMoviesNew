@@ -4,10 +4,9 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css"; // @Change in the future
-import Movies from "./components/Movies/Movies";
+import MainPage from "./components/pages/MainPage/MainPage";
 import { Provider } from "react-redux";
 import store from "./store";
-import Browse from "./components/Browse/Browse";
 import Movie from "./components/Movies/Movie/Movie";
 import SearchPage from "./components/SearchPage/SearchPage";
 import Login from "./components/auth/Login/Login";
@@ -20,6 +19,7 @@ import { loadUser } from "./actions/auth";
 import Popular_Movies from "./components/Popular Movies/Popular_Movies";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import "./fonts/Rubik-Regular.ttf";
+import TrendingMovies from "./components/pages/TrendingMovies/TrendingMovies";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -38,17 +38,21 @@ const App = () => {
           <Alert />
           <section className="container mt-container">
             <Switch>
-              <Route exact path="/" component={Movies} />
-              <Route exact path="/movies/browse/trending" component={Browse} />
-              <Route exact path="/movies/:id" component={Movie} />
-              <Route exact path="/search" component={SearchPage} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/" component={MainPage} />
+              <Route
+                exact
+                path="/movies/browse/trending"
+                component={TrendingMovies}
+              />
               <Route
                 exact
                 path="/movies/browse/popular"
                 component={Popular_Movies}
               />
+              <Route exact path="/movies/:id" component={Movie} />
+              <Route exact path="/search" component={SearchPage} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
               <PrivateRoute
                 exact
                 path="/profile/:username"
