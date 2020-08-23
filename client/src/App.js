@@ -19,6 +19,7 @@ import Profile from "./components/Profile/Profile";
 import { loadUser } from "./actions/auth";
 import Popular_Movies from "./components/Popular Movies/Popular_Movies";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import "./fonts/Rubik-Regular.ttf";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

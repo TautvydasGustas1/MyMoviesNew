@@ -13,3 +13,12 @@ html {
 .mt-container {
   margin-top: 5rem !important;
 }
+
+@font-face {
+  font-family: "Rubik";
+  src: local("Rubik"), url(./fonts/Rubik-Regular.ttf) format("truetype");
+}
+
+body {
+  font-family: "Rubik", "sans-serif" !important;
+}

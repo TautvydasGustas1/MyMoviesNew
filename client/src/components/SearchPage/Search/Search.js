@@ -4,7 +4,7 @@ import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../../layout/Spinner/Spinner";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 const Search = ({
   search,
