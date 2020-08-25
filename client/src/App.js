@@ -1,25 +1,25 @@
-import React, { Fragment, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css"; // @Change in the future
-import MainPage from "./components/pages/MainPage/MainPage";
+import React, { Fragment, useEffect } from "react";
 import { Provider } from "react-redux";
-import store from "./store";
-import Movie from "./components/Movies/Movie/Movie";
-import SearchPage from "./components/SearchPage/SearchPage";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { loadUser } from "./actions/auth";
+import "./App.css";
 import Login from "./components/auth/Login/Login";
-import setAuthToken from "./utils/setAuthToken";
-import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register/Register";
 import Alert from "./components/layout/Alerts/Alert";
-import Profile from "./components/Profile/Profile";
-import { loadUser } from "./actions/auth";
-import Popular_Movies from "./components/Popular Movies/Popular_Movies";
+import Footer from "./components/layout/Footer/Footer";
+import Navbar from "./components/layout/Navbar";
+import Movie from "./components/Movies/Movie/Movie";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
-import "./fonts/Rubik-Regular.ttf";
+import MainPage from "./components/pages/MainPage/MainPage";
+import PopularMovies from "./components/pages/PopularMovies/PopularMovies";
 import TrendingMovies from "./components/pages/TrendingMovies/TrendingMovies";
+import Profile from "./components/Profile/Profile";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import SearchPage from "./components/SearchPage/SearchPage";
+import "./fonts/Rubik-Regular.ttf";
+import store from "./store";
+import setAuthToken from "./utils/setAuthToken";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -47,7 +47,7 @@ const App = () => {
               <Route
                 exact
                 path="/movies/browse/popular"
-                component={Popular_Movies}
+                component={PopularMovies}
               />
               <Route exact path="/movies/:id" component={Movie} />
               <Route exact path="/search" component={SearchPage} />
@@ -68,4 +68,3 @@ const App = () => {
   );
 };
 export default App;
-//<PrivateRoute exact path='/dashboard' component={Login} />
