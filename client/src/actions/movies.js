@@ -15,7 +15,7 @@ import {
 
 const requestAction = (typeName) => {
   return {
-    type: REQUEST_SEARCH_MOVIES,
+    type: typeName,
   };
 };
 
