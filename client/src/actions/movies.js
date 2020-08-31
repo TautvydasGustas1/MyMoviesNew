@@ -13,17 +13,10 @@ import {
     REQUEST_SEARCH_USERS
 } from './types';
 
-<<<<<<< HEAD
 const requestAction = typeName => {
     return {
         type: REQUEST_SEARCH_MOVIES
     };
-=======
-const requestAction = (typeName) => {
-  return {
-    type: REQUEST_SEARCH_MOVIES,
-  };
->>>>>>> parent of baf07ee... Hotfix
 };
 
 const successAction = (data, typeName) => {
