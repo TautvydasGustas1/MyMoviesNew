@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const AlertStyle = {
-    boxShadow: '0 2px 4px 1px grey',
     position: 'fixed',
-    marginTop: '54px',
+    top: '54px',
+    width: '100%',
+    zIndex: '9999',
 };
 
 const Alert = ({ alerts }) =>
