@@ -8,7 +8,7 @@ A website that lets to see trending, popular movies, write reviews, and also rat
 
 
 # Link to live version 
-https://tranquil-headland-23548.herokuapp.com/
+https://mymoviesnew.herokuapp.com/
 
 # For this project I used:
 
